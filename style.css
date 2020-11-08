@@ -52,6 +52,8 @@ h2{
 
 #rightForm{
     height: 65px;
+
+
 }
 
 #add-coffee-name{
@@ -59,6 +61,11 @@ h2{
     vertical-align: super;
     margin-right: 15px;
     horiz-align: right;
+}
+
+#add-coffee-name-btn{
+    justify-self: stretch;
+    padding-left: 64px;
 }
 
 #add-roast-selection{
