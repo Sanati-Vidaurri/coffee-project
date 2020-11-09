@@ -103,3 +103,6 @@ var rightForm = document.getElementById('right-form');
 tbody.innerHTML = renderCoffees(coffees);
 roastInputText.addEventListener("keyup", updateCoffees);
 submitButton.addEventListener('click', addCoffee);
+// roastSelection.change(function(event) {
+//     updateCoffees(event);
+// })
