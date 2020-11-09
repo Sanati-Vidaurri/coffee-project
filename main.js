@@ -1,5 +1,6 @@
 "use strict"
 
+//HTML to render for individual coffee listing
 function renderCoffee(coffee) {
     var html = `<li class="col-6 col-lg-4 list-group-item coffee text-center">
                 <div class="coffee-name text-center">${coffee.name}</div> 
@@ -8,6 +9,7 @@ function renderCoffee(coffee) {
     return html;
 }
 
+//loop through each coffee render them in page
 function renderCoffees(coffees) {
     var html = '';
     for(var i = 0; i <= coffees.length - 1;  i++) {
@@ -19,17 +21,20 @@ function renderCoffees(coffees) {
     return html;
 }
 
+//update coffees list
 function updateCoffees() {
     var selectedRoast = roastSelection.value;
     var selectedUserTextRoast = userTextRoastSelection.value.toLowerCase();
     var filteredCoffees = [];
     coffees.forEach(function(coffee) {
+        //separate conditional to search for all roasts
         if (selectedUserTextRoast.trim() === "") {
             if (selectedRoast === 'all') {
                 filteredCoffees.push(coffee);
             } if (coffee.roast === selectedRoast) {
                 filteredCoffees.push(coffee);
             }
+            //separate conditional for when user selects roast
         } else {
             if ((selectedRoast === 'all') && coffee.name.toLowerCase().includes(selectedUserTextRoast)) {
                 filteredCoffees.push(coffee);
@@ -42,6 +47,17 @@ function updateCoffees() {
     tbody.innerHTML = renderCoffees(filteredCoffees);
 }
 
+//reusable validation message
+function validationBuilder(message) {
+    //create validation message
+    var newLi = document.createElement('p');
+    newLi.className = 'validation-text';
+    var newLiText = document.createTextNode(message);
+    newLi.appendChild(newLiText);
+    rightForm.append(newLi);
+}
+
+//add coffee form
 function addCoffee(e) {
     e.preventDefault()
     //check if input text is blank
@@ -50,12 +66,7 @@ function addCoffee(e) {
         if (document.querySelector('.validation-text')) {
             document.querySelector('.validation-text').remove();
         }
-        //create validation message
-        var newLi = document.createElement('p');
-        newLi.className = 'validation-text';
-        var newLiText = document.createTextNode('Name cannot be blank.');
-        newLi.appendChild(newLiText);
-        rightForm.append(newLi);
+        validationBuilder("Name cannot be blank.");
         //otherwise add coffee to list
     } else {
         if (document.querySelector('.validation-text')) {
@@ -68,10 +79,12 @@ function addCoffee(e) {
                 roast: getSelectedOption(addRoastSelection)
             })
         addCoffeeName.value = '';
+        validationBuilder("Added Coffee!");
         updateCoffees(e);
     }
 }
 
+//function workaround to get selected roast option for when user adds coffee
 function getSelectedOption(addRoastSelection) {
     var option;
     for(var i=0; i<addRoastSelection.options.length; i++){
@@ -103,8 +116,6 @@ var coffees = [
 
 //HTML element variables
 var tbody = document.querySelector('#coffees');
-
-
 var roastInputText = document.getElementById('roast-text');
 var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
@@ -113,6 +124,7 @@ var addRoastSelection = document.getElementById('add-roast-selection');
 var addCoffeeName = document.getElementById('add-coffee-name');
 var rightForm = document.getElementById('right-form');
 
+//event handlers
 tbody.innerHTML = renderCoffees(coffees);
 roastInputText.addEventListener("keyup", updateCoffees);
 submitButton.addEventListener('click', addCoffee);
