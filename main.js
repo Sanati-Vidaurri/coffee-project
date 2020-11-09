@@ -19,9 +19,7 @@ function renderCoffees(coffees) {
     return html;
 }
 
-function updateCoffees(e) {
-    debugger
-    e.preventDefault(); // don't submit the form, we just want to update the data
+function updateCoffees() {
     var selectedRoast = roastSelection.value;
     var selectedUserTextRoast = userTextRoastSelection.value.toLowerCase();
     var filteredCoffees = [];
@@ -60,13 +58,16 @@ function addCoffee(e) {
         rightForm.append(newLi);
         //otherwise add coffee to list
     } else {
-        document.querySelector('.validation-text').remove();
+        if (document.querySelector('.validation-text')) {
+            document.querySelector('.validation-text').remove();
+        }
         coffees.push(
             {
                 id: coffees.length + 1,
                 name: addCoffeeName.value,
                 roast: getSelectedOption(addRoastSelection)
             })
+        addCoffeeName.value = '';
         updateCoffees(e);
     }
 }
@@ -115,4 +116,3 @@ var rightForm = document.getElementById('right-form');
 tbody.innerHTML = renderCoffees(coffees);
 roastInputText.addEventListener("keyup", updateCoffees);
 submitButton.addEventListener('click', addCoffee);
-var roastSelection2 = document.querySelector('#roast-selection > option');
