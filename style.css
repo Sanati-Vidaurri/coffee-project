@@ -93,3 +93,15 @@ label{
     background-repeat: repeat-x;
 }
 
+.navbar{
+    font-size: x-large;
+}
+
+.navbar-brand{
+    font-size: x-large;
+    margin-left: 5rem;
+    margin-right: 5rem;
+
+}
+
+
