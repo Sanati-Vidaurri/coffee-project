@@ -19,7 +19,7 @@ function renderNoCoffee() {
 function renderCoffees(coffees) {
     var html = '';
     for(var i = 0; i <= coffees.length - 1;  i++) {
-            html += renderCoffee(coffees[i]);
+        html += renderCoffee(coffees[i]);
     }
     return html;
 }
@@ -29,6 +29,7 @@ function updateCoffees() {
     var selectedRoast = roastSelection.value;
     var selectedUserTextRoast = userTextRoastSelection.value.toLowerCase();
     var filteredCoffees = [];
+    //remove validation message with keyup update
     coffees.forEach(function(coffee) {
         //separate conditional to search for all roasts
         if (selectedUserTextRoast.trim() === "") {
@@ -50,7 +51,7 @@ function updateCoffees() {
     if (filteredCoffees.length === 0) {
         tbody.innerHTML = renderNoCoffee();
     } else {
-    tbody.innerHTML = renderCoffees(filteredCoffees);
+        tbody.innerHTML = renderCoffees(filteredCoffees);
     }
 }
 
