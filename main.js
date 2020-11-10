@@ -2,27 +2,16 @@
 
 //HTML to render for individual coffee listing
 function renderCoffee(coffee) {
-    if (coffee.description === null) {
         var html = `<li class="col-6 col-lg-4 list-group-item coffee text-center">
                 <div class="coffee-name text-center">${coffee.name}</div> 
                 <div class="roast-type text-muted text-center">${coffee.roast}</div>
                 </li>`;
-<<<<<<< HEAD
-    } else {
-        var html = `<li class="col-6 col-lg-4 list-group-item coffee text-center">
-                <div class="coffee-name text-center">${coffee.name}</div> 
-                <div class="roast-type text-muted text-center">${coffee.roast}</div>
-                <div class="hidden roast-type text-muted text-center">${coffee.description}</div>
-                </li>`;
-    }
-=======
     return html
 }
 
 function renderNoCoffee() {
     var html = `<li class="col-12 list-group-item coffee text-center">
                 <div class="coffee-name text-center">Sorry! No Matching Coffees <i class="fas fa-coffee"></i></div></li>`;
->>>>>>> c5eda1c90e6593969dbf1757e2b3b51cd9870536
     return html;
 }
 
