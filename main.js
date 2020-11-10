@@ -29,6 +29,7 @@ function updateCoffees() {
     var selectedRoast = roastSelection.value;
     var selectedUserTextRoast = userTextRoastSelection.value.toLowerCase();
     var filteredCoffees = [];
+    //remove validation message with keyup update
     coffees.forEach(function(coffee) {
         //separate conditional to search for all roasts
         if (selectedUserTextRoast.trim() === "") {
