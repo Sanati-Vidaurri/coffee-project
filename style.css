@@ -13,6 +13,10 @@ body {
     font-size: larger !important;
 }
 
+.nav-link:hover {
+    color: #faf0be !important;
+}
+
 #coffees > li {
     background-color: #faf0be !important;
     transition: all 300ms;
