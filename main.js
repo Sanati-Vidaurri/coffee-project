@@ -2,10 +2,15 @@
 
 //HTML to render for individual coffee listing
 function renderCoffee(coffee) {
+    if (!coffee) {
+        var html = `<li class="col-6 col-lg-4 list-group-item coffee text-center">
+                <div class="coffee-name text-center">SORRY! NO MATCHING COFFEES</div></li>`;
+    } else {
     var html = `<li class="col-6 col-lg-4 list-group-item coffee text-center">
                 <div class="coffee-name text-center">${coffee.name}</div> 
                 <div class="roast-type text-muted text-center">${coffee.roast}</div>
                 </li>`;
+    }
     return html;
 }
 
@@ -13,9 +18,6 @@ function renderCoffee(coffee) {
 function renderCoffees(coffees) {
     var html = '';
     for(var i = 0; i <= coffees.length - 1;  i++) {
-        if ( (coffees.length / 2) == coffees[i]) {
-            html+= `<div class='w-100'></div>`;
-        }
         html += renderCoffee(coffees[i]);
     }
     return html;

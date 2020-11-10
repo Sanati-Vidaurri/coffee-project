@@ -6,6 +6,12 @@
 body {
     background-color: #faf0be !important;
 }
+.navbar {
+    /*background-color: rgb(63, 43, 33) !important;*/
+    /*background-color: rgb(43, 26, 19) !important;*/
+    background-color: black !important;
+    font-size: larger !important;
+}
 
 #coffees > li {
     background-color: #faf0be !important;
@@ -88,9 +94,10 @@ label{
 
 }
 
-.jumbotron {
+.jumbotron-custom {
     background-image: url("img/jumbotron_coffee.jpg");
     background-repeat: repeat-x;
+    border-radius: 0;
 }
 
 .navbar{
