@@ -2,7 +2,7 @@
 
 //HTML to render for individual coffee listing
 function renderCoffee(coffee) {
-        var html = `<li class="col-6 col-lg-4 list-group-item coffee text-center">
+    var html = `<li class="col-6 col-lg-4 list-group-item coffee text-center">
                 <div class="coffee-name text-center">${coffee.name}</div> 
                 <div class="roast-type text-muted text-center">${coffee.roast}</div>
                 </li>`;
@@ -19,7 +19,7 @@ function renderNoCoffee() {
 function renderCoffees(coffees) {
     var html = '';
     for(var i = 0; i <= coffees.length - 1;  i++) {
-            html += renderCoffee(coffees[i]);
+        html += renderCoffee(coffees[i]);
     }
     return html;
 }
@@ -50,7 +50,7 @@ function updateCoffees() {
     if (filteredCoffees.length === 0) {
         tbody.innerHTML = renderNoCoffee();
     } else {
-    tbody.innerHTML = renderCoffees(filteredCoffees);
+        tbody.innerHTML = renderCoffees(filteredCoffees);
     }
 }
 
@@ -79,23 +79,12 @@ function addCoffee(e) {
         if (document.querySelector('.validation-text')) {
             document.querySelector('.validation-text').remove();
         }
-        if (coffeeDescription.value.trim() != "") {
-            coffees.push(
-                {
-                    id: coffees.length + 1,
-                    name: addCoffeeName.value,
-                    roast: getSelectedOption(addRoastSelection),
-                    description: coffeeDescription.value
-                })
-        } else {
         coffees.push(
             {
                 id: coffees.length + 1,
                 name: addCoffeeName.value,
-                roast: getSelectedOption(addRoastSelection),
-                description: null
+                roast: getSelectedOption(addRoastSelection)
             })
-        }
         addCoffeeName.value = '';
         validationBuilder("Added Coffee!");
         updateCoffees(e);
@@ -114,26 +103,22 @@ function getSelectedOption(addRoastSelection) {
     return option.value;
 }
 
-function toggleDisplay(e) {
-    this.classList.remove('hidden');
-}
-
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
 var coffees = [
-    {id: 1, name: 'Light City', roast: 'light', description: "lightly roasted, with a hint of citrus"},
-    {id: 2, name: 'Half City', roast: 'light', description: null},
-    {id: 3, name: 'Cinnamon', roast: 'light',description: null},
-    {id: 4, name: 'City', roast: 'medium',description: null},
-    {id: 5, name: 'American', roast: 'medium',description: null},
-    {id: 6, name: 'Breakfast', roast: 'medium',description: null},
-    {id: 7, name: 'High', roast: 'dark',description: null},
-    {id: 8, name: 'Continental', roast: 'dark',description: null},
-    {id: 9, name: 'New Orleans', roast: 'dark',description: null},
-    {id: 10, name: 'European', roast: 'dark',description: null},
-    {id: 11, name: 'Espresso', roast: 'dark',description: null},
-    {id: 12, name: 'Viennese', roast: 'dark',description: null},
-    {id: 13, name: 'Italian', roast: 'dark',description: null},
-    {id: 14, name: 'French', roast: 'dark',description: null},
+    {id: 1, name: 'Light City', roast: 'light'},
+    {id: 2, name: 'Half City', roast: 'light'},
+    {id: 3, name: 'Cinnamon', roast: 'light'},
+    {id: 4, name: 'City', roast: 'medium'},
+    {id: 5, name: 'American', roast: 'medium'},
+    {id: 6, name: 'Breakfast', roast: 'medium'},
+    {id: 7, name: 'High', roast: 'dark'},
+    {id: 8, name: 'Continental', roast: 'dark'},
+    {id: 9, name: 'New Orleans', roast: 'dark'},
+    {id: 10, name: 'European', roast: 'dark'},
+    {id: 11, name: 'Espresso', roast: 'dark'},
+    {id: 12, name: 'Viennese', roast: 'dark'},
+    {id: 13, name: 'Italian', roast: 'dark'},
+    {id: 14, name: 'French', roast: 'dark'},
 ];
 
 //HTML element variables
@@ -145,13 +130,8 @@ var userTextRoastSelection = document.getElementById("roast-text");
 var addRoastSelection = document.getElementById('add-roast-selection');
 var addCoffeeName = document.getElementById('add-coffee-name');
 var rightForm = document.getElementById('right-form');
-var coffeeDescription = document.getElementById("add-coffee-description");
-var coffeeLi = document.getElementsByTagName('li');
 
 //event handlers
 tbody.innerHTML = renderCoffees(coffees);
 roastInputText.addEventListener("keyup", updateCoffees);
 submitButton.addEventListener('click', addCoffee);
-coffeeLi.click(function(){
-    this.classList.remove('hidden')
-});
