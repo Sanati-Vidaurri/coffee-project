@@ -7,6 +7,7 @@ function renderCoffee(coffee) {
                 <div class="coffee-name text-center">${coffee.name}</div> 
                 <div class="roast-type text-muted text-center">${coffee.roast}</div>
                 </li>`;
+<<<<<<< HEAD
     } else {
         var html = `<li class="col-6 col-lg-4 list-group-item coffee text-center">
                 <div class="coffee-name text-center">${coffee.name}</div> 
@@ -14,6 +15,14 @@ function renderCoffee(coffee) {
                 <div class="hidden roast-type text-muted text-center">${coffee.description}</div>
                 </li>`;
     }
+=======
+    return html
+}
+
+function renderNoCoffee() {
+    var html = `<li class="col-12 list-group-item coffee text-center">
+                <div class="coffee-name text-center">Sorry! No Matching Coffees <i class="fas fa-coffee"></i></div></li>`;
+>>>>>>> c5eda1c90e6593969dbf1757e2b3b51cd9870536
     return html;
 }
 
@@ -21,10 +30,7 @@ function renderCoffee(coffee) {
 function renderCoffees(coffees) {
     var html = '';
     for(var i = 0; i <= coffees.length - 1;  i++) {
-        if ( (coffees.length / 2) == coffees[i]) {
-            html+= `<div class='w-100'></div>`;
-        }
-        html += renderCoffee(coffees[i]);
+            html += renderCoffee(coffees[i]);
     }
     return html;
 }
@@ -52,7 +58,11 @@ function updateCoffees() {
             }
         }
     });
+    if (filteredCoffees.length === 0) {
+        tbody.innerHTML = renderNoCoffee();
+    } else {
     tbody.innerHTML = renderCoffees(filteredCoffees);
+    }
 }
 
 //reusable validation message
@@ -69,7 +79,7 @@ function validationBuilder(message) {
 function addCoffee(e) {
     e.preventDefault()
     //check if input text is blank
-    if (addCoffeeName.value.trim() == '') {
+    if (addCoffeeName.value.trim() === '') {
         //logic to avoid validation message duplication
         if (document.querySelector('.validation-text')) {
             document.querySelector('.validation-text').remove();
