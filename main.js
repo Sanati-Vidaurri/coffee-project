@@ -11,7 +11,7 @@ function renderCoffee(coffee) {
 
 function renderNoCoffee() {
     var html = `<li class="col-12 list-group-item coffee text-center">
-                <div class="coffee-name text-center">Sorry! No Matching Coffees <i class="fas fa-coffee"></i></div></li>`;
+                <div class="coffee-name text-center">Sorry! No Matching Coffee <i class="fas fa-coffee"></i></div></li>`;
     return html;
 }
 
