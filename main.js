@@ -2,15 +2,16 @@
 
 //HTML to render for individual coffee listing
 function renderCoffee(coffee) {
-    if (!coffee) {
-        var html = `<li class="col-6 col-lg-4 list-group-item coffee text-center">
-                <div class="coffee-name text-center">SORRY! NO MATCHING COFFEES</div></li>`;
-    } else {
     var html = `<li class="col-6 col-lg-4 list-group-item coffee text-center">
                 <div class="coffee-name text-center">${coffee.name}</div> 
                 <div class="roast-type text-muted text-center">${coffee.roast}</div>
                 </li>`;
-    }
+    return html
+}
+
+function renderNoCoffee() {
+    var html = `<li class="col-12 list-group-item coffee text-center">
+                <div class="coffee-name text-center">Sorry! No Matching Coffees <i class="fas fa-coffee"></i></div></li>`;
     return html;
 }
 
@@ -18,7 +19,7 @@ function renderCoffee(coffee) {
 function renderCoffees(coffees) {
     var html = '';
     for(var i = 0; i <= coffees.length - 1;  i++) {
-        html += renderCoffee(coffees[i]);
+            html += renderCoffee(coffees[i]);
     }
     return html;
 }
@@ -46,7 +47,11 @@ function updateCoffees() {
             }
         }
     });
+    if (filteredCoffees.length === 0) {
+        tbody.innerHTML = renderNoCoffee();
+    } else {
     tbody.innerHTML = renderCoffees(filteredCoffees);
+    }
 }
 
 //reusable validation message
@@ -63,7 +68,7 @@ function validationBuilder(message) {
 function addCoffee(e) {
     e.preventDefault()
     //check if input text is blank
-    if (addCoffeeName.value.trim() == '') {
+    if (addCoffeeName.value.trim() === '') {
         //logic to avoid validation message duplication
         if (document.querySelector('.validation-text')) {
             document.querySelector('.validation-text').remove();
